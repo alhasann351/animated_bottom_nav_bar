@@ -1,4 +1,9 @@
 import 'package:animated_bottom_nav_bar/models/nav_item_model.dart';
+import 'package:animated_bottom_nav_bar/pages/Notice.dart';
+import 'package:animated_bottom_nav_bar/pages/chat.dart';
+import 'package:animated_bottom_nav_bar/pages/history.dart';
+import 'package:animated_bottom_nav_bar/pages/person.dart';
+import 'package:animated_bottom_nav_bar/pages/search.dart';
 import 'package:flutter/material.dart';
 import 'package:rive/rive.dart';
 
@@ -13,6 +18,7 @@ class _MyHomePageState extends State<MyHomePage> {
   List<SMIBool> riveIconInputs = [];
   List<StateMachineController?> controllers = [];
   int selectedIndex = 0;
+  final pages = [const Chat(), const Search(), const History(), const Notice(), const Profile()];
 
   @override
   void dispose() {
@@ -32,13 +38,13 @@ class _MyHomePageState extends State<MyHomePage> {
         decoration: BoxDecoration(
           color: Theme.of(context).primaryColor,
           borderRadius: const BorderRadius.all(Radius.circular(24)),
-          boxShadow: [
+          /*boxShadow: [
             BoxShadow(
               color: Theme.of(context).primaryColor.withOpacity(0.3),
               offset: const Offset(0, 20),
               blurRadius: 20,
             ),
-          ],
+          ],*/
         ),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -84,6 +90,7 @@ class _MyHomePageState extends State<MyHomePage> {
           }),
         ),
       ),
+      body: pages[selectedIndex],
     );
   }
 }
